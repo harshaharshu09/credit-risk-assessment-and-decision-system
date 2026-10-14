@@ -6,276 +6,308 @@ An end-to-end **Explainable Machine Learning** application for synthetic credit-
 
 ---
 
-## Project Summary
+## Overview
 
-This project implements a complete credit-risk analytics workflow, from synthetic dataset preparation through model training, evaluation, explainability, reporting, and interactive application delivery.
+This project implements a complete credit-risk analytics workflow — from data preparation and exploratory analysis to multi-model training, evaluation, explainability, and an interactive Streamlit application.
 
-The workflow covers:
+The system is built around four classification models: **Logistic Regression, Random Forest, XGBoost, and CatBoost**. Their performance is compared on a held-out test set before generating predictions and explainable model insights.
 
-- Dataset generation and data-quality validation
-- Exploratory Data Analysis (EDA)
-- Feature preprocessing and train/test split
-- Training and comparison of four classification models
-- Default-probability prediction for hypothetical applicants
-- Evaluation using precision, recall, F1-score, ROC-AUC, and confusion matrix
-- Permutation feature importance and SHAP explanations
-- Model persistence and downloadable analytical outputs
-- Interactive Streamlit dashboard
+---
 
-## Problem
+## Key Objectives
 
-Credit-risk analysis considers multiple applicant and loan attributes that may be associated with the likelihood of repayment difficulty. This project uses those attributes to demonstrate classification and model interpretation on a synthetic dataset.
+- Analyze synthetic borrower and loan characteristics
+- Perform exploratory data analysis and visualization
+- Prepare features for machine-learning classification
+- Train and compare four classification models
+- Generate simulated loan-default probabilities
+- Evaluate model performance using multiple metrics
+- Analyze feature importance and model behaviour
+- Generate SHAP-based explanations
+- Produce reusable CSV, PNG, and model artifacts
+- Provide an interactive Streamlit credit-risk analytics dashboard
 
-The target variable is `loan_default`:
+---
+
+## Project Workflow
 
 ```text
-0 = Simulated non-default
-1 = Simulated default
+Credit Risk Dataset
+        ↓
+Data Loading & Validation
+        ↓
+Data Preprocessing
+        ↓
+Exploratory Data Analysis
+        ↓
+Feature Preparation
+        ↓
+Train / Test Split
+        ↓
+┌─────────────────────────────────────────────┐
+│              MODEL TRAINING                 │
+│                                             │
+│  Logistic Regression  →  Baseline Model     │
+│  Random Forest        →  Ensemble Model     │
+│  XGBoost              →  Boosting Model     │
+│  CatBoost             →  Boosting Model     │
+└─────────────────────────────────────────────┘
+        ↓
+Model Comparison
+        ↓
+Best Model Selection
+        ↓
+Default Probability Prediction
+        ↓
+Model Evaluation
+        ↓
+Feature Importance Analysis
+        ↓
+SHAP Explainability
+        ↓
+Reports & Visualizations
+        ↓
+╔═════════════════════════════════════════════╗
+║       CREDIT RISK ANALYTICS DASHBOARD      ║
+║              STREAMLIT APPLICATION         ║
+╚═════════════════════════════════════════════╝
 ```
 
-The data is fictional and created using illustrative rules. Model performance on this dataset should not be interpreted as evidence of real-world creditworthiness.
+---
 
 ## Dataset
 
-The generated dataset contains **5,000 synthetic applicant records** and **13 columns**. The tracked data-quality report shows zero missing cells.
+The project uses a synthetic credit-risk dataset containing **5,000 applicant records and 13 columns**.
 
-Features include age, annual income, employment years and type, loan amount, loan term, interest rate, credit history, existing loans, missed payments, and loan purpose. The target column is `loan_default`.
-
-The generated CSV is available at:
+The target variable is:
 
 ```text
-data/credit_risk_dataset.csv
+loan_default
 ```
 
-## Workflow
-
-```mermaid
-flowchart TD
-    A[Synthetic Credit Dataset] --> B[Data Quality Validation]
-    B --> C[Exploratory Data Analysis]
-    C --> D[Feature Preparation]
-    D --> E[Train / Test Split]
-    E --> F[Model Training]
-    F --> G[Model Comparison]
-    G --> H[Best Model Selection]
-    H --> I[Default Probability Prediction]
-    I --> J[Model Evaluation]
-    J --> K[Permutation Feature Importance]
-    K --> L[SHAP Explainability]
-    L --> M[Reports and Visualizations]
-    M --> N[Streamlit Credit Risk Dashboard]
+```text
+0 → Simulated non-default
+1 → Simulated default
 ```
 
-## Data Preparation
+The dataset contains applicant and loan-related attributes such as age, annual income, employment information, loan amount, loan term, interest rate, credit history, existing loans, missed payments, and loan purpose.
 
-The pipeline performs dataset inspection, missing-value and duplicate checks, feature preparation, categorical encoding, preprocessing, and a train/test split before model evaluation.
+> The dataset is synthetic and intended for analytical demonstration only.
 
-The train and test artifacts are available as:
-
-- `outputs/train_set.csv`
-- `outputs/test_set.csv`
+---
 
 ## Exploratory Data Analysis
 
-The project generates plots to inspect the synthetic default target, applicant income, loan amounts, loan-purpose default rates, and interest rates by simulated outcome.
+The EDA stage examines the distribution and relationships within the synthetic credit-risk dataset.
 
-### Target Distribution
+### 1. Target Distribution
 
 ![Target Distribution](outputs/plots/01_target_distribution.png)
 
-The target distribution shows the counts for simulated non-default and default records.
+Shows the distribution of simulated default and non-default observations.
 
-### Annual Income Distribution
+### 2. Annual Income Distribution
 
 ![Annual Income Distribution](outputs/plots/02_annual_income_distribution.png)
 
-The income distribution helps inspect the range and concentration of synthetic applicant income.
+Shows the distribution of annual income across synthetic applicants.
 
-### Loan Amount by Simulated Outcome
+### 3. Loan Amount by Outcome
 
-![Loan Amount by Simulated Outcome](outputs/plots/03_loan_amount_by_outcome.png)
+![Loan Amount by Outcome](outputs/plots/03_loan_amount_by_outcome.png)
 
-This plot compares the distribution of loan amounts across the two simulated target classes.
+Compares loan-amount distributions across the simulated outcome classes.
 
-### Simulated Default Rate by Loan Purpose
+### 4. Default Rate by Loan Purpose
 
-![Simulated Default Rate by Loan Purpose](outputs/plots/04_default_rate_by_purpose.png)
+![Default Rate by Loan Purpose](outputs/plots/04_default_rate_by_purpose.png)
 
-This chart compares the synthetic default share across the available loan-purpose categories.
+Shows simulated default rates across different loan-purpose categories.
 
-### Interest Rate by Simulated Outcome
+### 5. Interest Rate by Outcome
 
-![Interest Rate by Simulated Outcome](outputs/plots/05_interest_rate_by_outcome.png)
+![Interest Rate by Outcome](outputs/plots/05_interest_rate_by_outcome.png)
 
-This chart compares interest-rate distributions for simulated default and non-default records.
+Compares interest-rate distributions across simulated default and non-default observations.
 
-All chart files are stored in `outputs/plots/`.
+---
 
-## Models
+## Machine Learning Models
 
-Four classification models are implemented and compared:
+Four classification algorithms are trained and compared within the same workflow.
 
 ### Logistic Regression
 
-A baseline classifier that provides a reference point for the model comparison.
+Provides a transparent linear baseline for the classification task.
 
 ### Random Forest
 
-An ensemble of decision trees that can learn nonlinear relationships in structured data.
+Uses an ensemble of decision trees to capture nonlinear relationships and feature interactions.
 
 ### XGBoost
 
-A gradient-boosting classifier used to compare boosted-tree performance on the prepared features.
+Uses gradient-boosted decision trees for structured/tabular classification.
 
 ### CatBoost
 
-A gradient-boosting classifier included as an additional model for structured/tabular classification.
+Uses gradient boosting as an additional ensemble approach for the classification task.
 
-The trained model artifacts are stored in `models/`:
+### Model Artifacts
 
-- `logistic_regression.joblib`
-- `random_forest.joblib`
-- `xgboost.joblib`
-- `catboost.joblib`
-- `best_model.joblib`
+Trained models are persisted under `models/`:
 
-## Evaluation
+```text
+models/
+├── logistic_regression.joblib
+├── random_forest.joblib
+├── xgboost.joblib
+├── catboost.joblib
+└── best_model.joblib
+```
 
-The held-out test split is evaluated using multiple metrics. The current committed `outputs/model_comparison.csv` contains these results:
+---
 
-| Model | Accuracy | Precision (Default) | Recall (Default) | F1 (Default) | ROC-AUC |
+## Model Evaluation
+
+The trained models are evaluated on the held-out test set using accuracy, precision, recall, F1-score, and ROC-AUC.
+
+### Model Comparison
+
+| Model | Accuracy | Precision | Recall | F1-Score | ROC-AUC |
 |---|---:|---:|---:|---:|---:|
 | CatBoost | 0.764 | 0.415 | 0.074 | 0.126 | **0.683** |
 | Logistic Regression | 0.608 | 0.331 | **0.699** | **0.449** | 0.678 |
 | Random Forest | 0.722 | 0.391 | 0.384 | 0.388 | 0.673 |
 | XGBoost | **0.769** | **0.481** | 0.109 | 0.178 | 0.665 |
 
-**Interpretation:** CatBoost has the highest ROC-AUC in the committed comparison file, while XGBoost has the highest accuracy and Logistic Regression has the highest default-class recall and F1-score. The most suitable model depends on the evaluation objective; accuracy alone is not sufficient.
+These metrics represent the current synthetic-data test split. Different evaluation objectives can lead to different preferred models.
 
-These are results from the current synthetic-data test split, not production performance estimates.
-
-### Model Metrics Comparison
+### 6. Model Metrics Comparison
 
 ![Model Metrics Comparison](outputs/plots/06_model_metrics_comparison.png)
 
-### Best Model Confusion Matrix
+### 7. Best Model Confusion Matrix
 
 ![Best Model Confusion Matrix](outputs/plots/07_best_model_confusion_matrix.png)
 
-The confusion matrix shows the best model's predictions against the held-out test labels.
+Shows the classification results of the selected model on the held-out test set.
 
-### ROC Curves
+### 8. ROC Curves
 
 ![ROC Curves](outputs/plots/08_roc_curves.png)
 
-ROC curves compare true-positive and false-positive rates across classification thresholds.
+Compares the ROC behaviour of the trained classification models.
 
-### Precision-Recall Curves
+### 9. Precision-Recall Curves
 
-![Precision-Recall Curves](outputs/plots/09_precision_recall_curves.png)
+![Precision Recall Curves](outputs/plots/09_precision_recall_curves.png)
 
-Precision-recall analysis is especially relevant when examining performance on the simulated default class.
+Compares precision and recall behaviour across classification thresholds.
 
-## Feature Importance & Explainable AI
+---
 
-### Permutation Feature Importance
+## Explainable AI & Feature Importance
+
+Model performance alone is not sufficient for an analytical credit-risk workflow. The project therefore includes feature-importance and SHAP-based analysis.
+
+### 10. Permutation Feature Importance
 
 ![Permutation Feature Importance](outputs/plots/10_permutation_feature_importance.png)
 
-Permutation importance estimates how much model performance changes when a feature is shuffled. It provides a model-agnostic view of feature usefulness for this evaluation split.
+Measures the change in model performance when individual features are randomly permuted.
 
-### SHAP Summary
+### 11. SHAP Summary
 
 ![SHAP Summary](outputs/plots/11_shap_summary.png)
 
-SHAP (SHapley Additive exPlanations) is used to inspect feature contributions to model predictions. The explanation reflects the trained model and synthetic data; it does not establish causality.
+Provides an explainable view of how features contribute to model predictions.
 
-## Streamlit Credit Risk Analytics Application
+> SHAP and feature-importance results describe model behaviour on the synthetic dataset; they do not establish causal relationships.
 
-The project includes a Streamlit web application titled **Credit Risk – Explainable Financial Decision Making**.
+---
 
-The dashboard provides six sections:
+## Credit Risk Analytics — Streamlit Application
 
-- **Portfolio Overview** — synthetic applicant summary, default distribution, and dataset preview
-- **Explore Data** — loan-purpose filtering, dataset browsing, descriptive statistics, and purpose-level default rates
-- **Applicant Estimate** — hypothetical applicant inputs and simulated default-probability estimation
-- **Data Visualizations** — generated PNG plot gallery
-- **Model Performance** — model comparison metrics, confusion matrix, ROC curve, precision-recall curve, feature importance, and SHAP summary
-- **Reports & Downloads** — downloadable CSV and PNG outputs
+### Main Project Highlight
 
-### Run the Application Locally
+The project is delivered through an interactive **Streamlit Credit Risk Analytics** application, providing a single interface for exploring the dataset, estimating applicant risk, reviewing model performance, visualizing analytical results, and downloading generated outputs.
+
+### Application Modules
+
+```text
+┌─────────────────────────────────────────────┐
+│       CREDIT RISK ANALYTICS APPLICATION     │
+├─────────────────────────────────────────────┤
+│                                             │
+│  Portfolio Overview                         │
+│          ↓                                  │
+│  Explore Data                               │
+│          ↓                                  │
+│  Applicant Estimate                         │
+│          ↓                                  │
+│  Data Visualizations                        │
+│          ↓                                  │
+│  Model Performance                          │
+│          ↓                                  │
+│  Reports & Downloads                        │
+│                                             │
+└─────────────────────────────────────────────┘
+```
+
+### Portfolio Overview
+
+Provides a high-level view of the synthetic credit-risk portfolio, including applicant information, simulated default distribution, and dataset-level summaries.
+
+### Explore Data
+
+Allows the dataset to be inspected interactively with filtering and analytical views for loan-purpose and default-rate analysis.
+
+### Applicant Estimate
+
+Provides an interactive interface for entering hypothetical applicant information and obtaining a simulated default-risk estimate from the trained model.
+
+### Data Visualizations
+
+Displays the generated analytical plots directly within the application.
+
+### Model Performance
+
+Provides access to model comparison metrics, confusion-matrix analysis, ROC curves, precision-recall curves, permutation feature importance, and SHAP analysis.
+
+### Reports & Downloads
+
+Provides access to generated CSV reports, prediction files, and visualization outputs.
+
+### Run the Application
 
 ```bash
 python -m pip install -r requirements.txt
 streamlit run app.py
 ```
 
-The app runs on the local Streamlit server. **A local address such as `localhost:8503` is not a public live-demo URL.** No public deployment URL is claimed in this README.
+The application opens through the local Streamlit server. A local `localhost` address is not a public deployment URL.
+
+---
 
 ## Project Outputs
 
-Generated analytics are stored in `outputs/`. The Streamlit dashboard makes available CSV reports and PNG plots for download.
+The project generates reusable analytical artifacts under `outputs/`.
 
-| Output | Description |
+| Output | Purpose |
 |---|---|
-| `outputs/model_comparison.csv` | Test-set metrics for the four classifiers |
-| `outputs/best_model_summary.json` | Selected model and its metrics |
-| `outputs/data_quality_report.csv` | Per-column data types, missing counts, and unique values |
-| `outputs/descriptive_statistics.csv` | Descriptive statistics for the dataset |
-| `outputs/permutation_feature_importance.csv` | Permutation importance results |
-| `outputs/shap_feature_importance.csv` | SHAP feature importance, when generated |
-| `outputs/predictions_*.csv` | Test-set predictions and probabilities by model |
-| `outputs/train_set.csv`, `outputs/test_set.csv` | Training and held-out test records |
-| `outputs/reports/` | Build verification and model-specific reports |
-| `outputs/plots/` | Eleven PNG plots generated by the current pipeline |
+| `model_comparison.csv` | Model evaluation results |
+| `best_model_summary.json` | Selected model summary |
+| `data_quality_report.csv` | Dataset quality analysis |
+| `descriptive_statistics.csv` | Dataset descriptive statistics |
+| `permutation_feature_importance.csv` | Feature importance results |
+| `shap_feature_importance.csv` | SHAP feature importance results |
+| `predictions_*.csv` | Model predictions and probabilities |
+| `train_set.csv` | Training data artifact |
+| `test_set.csv` | Held-out test data artifact |
+| `plots/` | Generated analytical visualizations |
+| `reports/` | Generated project reports |
 
-## Repository Structure
-
-```text
-credit-risk-assessment-and-decision-system/
-├── README.md
-├── app.py
-├── app_backup.py
-├── main.py
-├── requirements.txt
-├── .gitignore
-├── credit_risk_dataset.csv
-├── data/
-│   └── credit_risk_dataset.csv
-├── models/
-│   ├── best_model.joblib
-│   ├── catboost.joblib
-│   ├── logistic_regression.joblib
-│   ├── random_forest.joblib
-│   └── xgboost.joblib
-└── outputs/
-    ├── best_model_summary.json
-    ├── data_quality_report.csv
-    ├── descriptive_statistics.csv
-    ├── model_comparison.csv
-    ├── permutation_feature_importance.csv
-    ├── predictions_catboost.csv
-    ├── predictions_logistic_regression.csv
-    ├── predictions_random_forest.csv
-    ├── predictions_xgboost.csv
-    ├── shap_feature_importance.csv
-    ├── target_distribution.csv
-    ├── test_set.csv
-    ├── train_set.csv
-    ├── reports/
-    └── plots/
-        ├── 01_target_distribution.png
-        ├── 02_annual_income_distribution.png
-        ├── 03_loan_amount_by_outcome.png
-        ├── 04_default_rate_by_purpose.png
-        ├── 05_interest_rate_by_outcome.png
-        ├── 06_model_metrics_comparison.png
-        ├── 07_best_model_confusion_matrix.png
-        ├── 08_roc_curves.png
-        ├── 09_precision_recall_curves.png
-        ├── 10_permutation_feature_importance.png
-        └── 11_shap_summary.png
-```
+---
 
 ## Technology Stack
 
@@ -284,54 +316,106 @@ credit-risk-assessment-and-decision-system/
 | Programming | Python |
 | Data Processing | Pandas, NumPy |
 | Machine Learning | Scikit-learn |
+| Classification | Logistic Regression, Random Forest |
 | Gradient Boosting | XGBoost, CatBoost |
 | Explainable AI | SHAP |
 | Visualization | Matplotlib, Seaborn |
 | Model Persistence | Joblib |
-| Interactive Dashboard | Streamlit |
-| Version Control | Git |
-| Repository Hosting | GitHub |
+| Web Application | Streamlit |
+| Development | VS Code |
+| Version Control | Git & GitHub |
 
-## Project Setup
+---
 
-Clone the repository:
+## Repository Structure
+
+```text
+credit-risk-assessment-and-decision-system/
+│
+├── data/
+│   └── credit_risk_dataset.csv
+│
+├── models/
+│   ├── logistic_regression.joblib
+│   ├── random_forest.joblib
+│   ├── xgboost.joblib
+│   ├── catboost.joblib
+│   └── best_model.joblib
+│
+├── outputs/
+│   ├── model_comparison.csv
+│   ├── best_model_summary.json
+│   ├── predictions_catboost.csv
+│   ├── predictions_logistic_regression.csv
+│   ├── predictions_random_forest.csv
+│   ├── predictions_xgboost.csv
+│   ├── train_set.csv
+│   ├── test_set.csv
+│   ├── data_quality_report.csv
+│   ├── descriptive_statistics.csv
+│   ├── permutation_feature_importance.csv
+│   ├── shap_feature_importance.csv
+│   ├── reports/
+│   └── plots/
+│       ├── 01_target_distribution.png
+│       ├── 02_annual_income_distribution.png
+│       ├── 03_loan_amount_by_outcome.png
+│       ├── 04_default_rate_by_purpose.png
+│       ├── 05_interest_rate_by_outcome.png
+│       ├── 06_model_metrics_comparison.png
+│       ├── 07_best_model_confusion_matrix.png
+│       ├── 08_roc_curves.png
+│       ├── 09_precision_recall_curves.png
+│       ├── 10_permutation_feature_importance.png
+│       └── 11_shap_summary.png
+│
+├── app.py
+├── app_backup.py
+├── main.py
+├── requirements.txt
+├── .gitignore
+└── README.md
+```
+
+---
+
+## Installation & Usage
+
+### Clone Repository
 
 ```bash
 git clone https://github.com/harshaharshu09/credit-risk-assessment-and-decision-system.git
 cd credit-risk-assessment-and-decision-system
 ```
 
-Install dependencies:
+### Install Dependencies
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-Run the machine-learning pipeline:
+### Run the Machine Learning Pipeline
 
 ```bash
 python main.py
 ```
 
-Launch the dashboard:
+### Launch the Credit Risk Analytics Application
 
 ```bash
 streamlit run app.py
 ```
 
-## Reproducibility
+---
 
-The project uses a fixed random seed in the synthetic data generation and model workflow. Running `main.py` regenerates the dataset, models, evaluation reports, and PNG plots in the local project directories. Since data and target labels are simulated, repeatable results describe this artificial setup only.
+## Responsible Use
 
-## Limitations & Responsible Use
+This system is a synthetic-data analytics and demonstration project. The generated risk probabilities and model metrics must not be interpreted as validated credit decisions.
 
-- The dataset and target labels are synthetic.
-- Results do not establish real-world credit-risk performance.
-- The dashboard's 50% classification cutoff is illustrative and is not a validated lending policy.
-- SHAP and permutation importance describe model behaviour; they do not prove causal relationships.
-- The application is not connected to a live banking or lending system.
-- Production use would require appropriate real-world validation, calibration, fairness assessment, monitoring, security controls, and regulatory review.
+A production credit-risk platform would require real-world validation, calibration, fairness testing, data governance, security controls, monitoring, regulatory compliance, and appropriate human oversight.
+
+---
 
 ## Repository
 
-[Credit Risk Assessment & Decision Support System on GitHub](https://github.com/harshaharshu09/credit-risk-assessment-and-decision-system)
+[Credit Risk Assessment & Decision Support System](https://github.com/harshaharshu09/credit-risk-assessment-and-decision-system)
