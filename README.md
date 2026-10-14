@@ -228,8 +228,6 @@ Provides an explainable view of how features contribute to model predictions.
 
 ## Credit Risk Analytics — Streamlit Application
 
-### Main Project Highlight
-
 The project is delivered through an interactive **Streamlit Credit Risk Analytics** application, providing a single interface for exploring the dataset, estimating applicant risk, reviewing model performance, visualizing analytical results, and downloading generated outputs.
 
 ### Application Modules
