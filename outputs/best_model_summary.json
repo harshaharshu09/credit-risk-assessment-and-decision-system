@@ -1,0 +1,11 @@
+{
+  "best_model_by_roc_auc": "CatBoost",
+  "metrics": {
+    "model": "CatBoost",
+    "accuracy": 0.764,
+    "precision_default": 0.4146341463414634,
+    "recall_default": 0.07423580786026202,
+    "f1_default": 0.1259259259259259,
+    "roc_auc": 0.6826953029865371
+  }
+}

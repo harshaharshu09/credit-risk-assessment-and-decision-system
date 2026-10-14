@@ -1,0 +1,14 @@
+column,dtype,missing_count,unique_values
+applicant_id,str,0,5000
+age,int64,0,45
+annual_income,int64,0,4986
+employment_years,float64,0,231
+employment_type,str,0,4
+loan_amount,int64,0,4950
+loan_term_months,int64,0,5
+interest_rate,float64,0,1263
+credit_history_years,int64,0,41
+existing_loans,int64,0,7
+missed_payments,int64,0,5
+loan_purpose,str,0,5
+loan_default,int64,0,2

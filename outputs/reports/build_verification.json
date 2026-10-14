@@ -1,0 +1,16 @@
+{
+  "rows": 5000,
+  "columns": 13,
+  "missing_cells": 0,
+  "models_trained": [
+    "Logistic Regression",
+    "Random Forest",
+    "XGBoost",
+    "CatBoost"
+  ],
+  "best_model_by_roc_auc": "CatBoost",
+  "plots": 11,
+  "csv_outputs": 12,
+  "model_files": 5,
+  "simulated_default_rate": 0.2288
+}

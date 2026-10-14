@@ -1,0 +1,1 @@
+Rows: 5000\nColumns: 13\nMissing cells: 0\nDuplicate rows: 0\nTarget: 1=simulated default; 0=simulated non-default\nAll data is fictional. Not for real lending decisions.\n
