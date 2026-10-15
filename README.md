@@ -45,15 +45,14 @@ Model performance is evaluated on a held-out test set, followed by feature-impor
 ## Project Workflow
 
 ```mermaid
-flowchart TD
-    A[Credit Risk Dataset] --> B[Data Inspection & Validation]
-    B --> C[Data Cleaning & Preprocessing]
-    C --> D[Exploratory Data Analysis]
-    D --> E[Feature Preparation]
+flowchart LR
+    A([Credit Risk Dataset]) --> B[Data Ingestion<br/>Inspection & Validation]
+    B --> C[Data Quality<br/>Cleaning & Preprocessing]
+    C --> D[Exploratory Data Analysis<br/>Statistical & Visual Analysis]
+    D --> E[Feature Engineering<br/>Encoding & Preparation]
     E --> F[Train / Test Split]
 
-    F --> G[Model Training]
-
+    F --> G{{Model Development}}
     G --> H[Logistic Regression]
     G --> I[Random Forest]
     G --> J[XGBoost]
@@ -64,52 +63,54 @@ flowchart TD
     J --> L
     K --> L
 
-    L --> M[Performance Comparison]
-    M --> N[Best Model Selection]
-    N --> O[Default Probability Prediction]
+    L --> M[Performance Comparison<br/>Accuracy • Precision • Recall<br/>F1 • ROC-AUC]
+    M --> N[Model Selection]
+    N --> O[Default Probability<br/>Prediction]
+    O --> P[Credit Risk Assessment]
 
-    O --> P[Risk Assessment]
+    P --> Q{{Explainability Layer}}
+    Q --> R[Feature Importance]
+    Q --> S[Permutation Importance]
+    Q --> T[SHAP Analysis]
 
-    P --> Q[Feature Importance]
-    P --> R[Permutation Importance]
-    P --> S[SHAP Explainability]
+    R --> U[Reports & Visualizations]
+    S --> U
+    T --> U
 
-    Q --> T[Reports & Visualizations]
-    R --> T
-    S --> T
+    U --> V[Streamlit Analytics Dashboard]
+    V --> W([Interactive Decision Support])
 
-    T --> U[Streamlit Credit Risk Dashboard]
-    U --> V[Interactive Decision Support]
+    classDef source fill:#f5f5f5,stroke:#333,stroke-width:1px;
+    classDef process fill:#eef4ff,stroke:#4a6fa5,stroke-width:1px;
+    classDef model fill:#f7f1e8,stroke:#9a6a1f,stroke-width:1px;
+    classDef analysis fill:#f1edf8,stroke:#76528a,stroke-width:1px;
+    classDef application fill:#edf6ef,stroke:#4f7942,stroke-width:1px;
 
-    classDef data fill:#E8F1FB,stroke:#2F5D8C,stroke-width:1px;
-    classDef process fill:#EEF5EA,stroke:#4F7942,stroke-width:1px;
-    classDef model fill:#F7F0E3,stroke:#9A6A1F,stroke-width:1px;
-    classDef output fill:#F2EAF7,stroke:#76528A,stroke-width:1px;
-
-    class A data;
-    class B,C,D,E,F,G,L,M,N,O,P process;
-    class H,I,J,K model;
-    class Q,R,S,T,U,V output;
+    class A,W source;
+    class B,C,D,E,F,L,M,N,O,P,U process;
+    class G,H,I,J,K model;
+    class Q,R,S,T analysis;
+    class V application;
 ```
 
 ### Workflow Stages
 
-| Stage | Process | Outcome |
+| Phase | Stage | Description |
 |---|---|---|
-| 01 | Data Inspection & Validation | Verified dataset structure and quality |
-| 02 | Cleaning & Preprocessing | Model-ready applicant features |
-| 03 | Exploratory Data Analysis | Distribution and relationship insights |
-| 04 | Feature Preparation | Structured numerical and categorical inputs |
-| 05 | Train / Test Split | Independent evaluation dataset |
-| 06 | Model Training | Four classification models trained |
-| 07 | Model Evaluation | Comparative performance metrics |
-| 08 | Best Model Selection | Selected model for risk estimation |
-| 09 | Risk Prediction | Simulated default probability |
-| 10 | Explainability | Feature importance and SHAP analysis |
-| 11 | Reporting | Charts, metrics and reusable outputs |
-| 12 | Application Layer | Interactive Streamlit decision-support dashboard |
+| 01 | Data Foundation | Ingest, inspect, validate, and assess the quality of the credit-risk dataset |
+| 02 | Data Preparation | Clean the data and prepare numerical and categorical features for modelling |
+| 03 | Exploratory Analysis | Identify distributions, patterns, relationships, and simulated default trends |
+| 04 | Feature Preparation | Transform the prepared variables into model-ready inputs |
+| 05 | Model Development | Train Logistic Regression, Random Forest, XGBoost, and CatBoost classifiers |
+| 06 | Model Evaluation | Compare predictive performance using Accuracy, Precision, Recall, F1-Score, and ROC-AUC |
+| 07 | Model Selection | Select the appropriate model based on the evaluation objectives |
+| 08 | Risk Estimation | Generate simulated default probabilities and applicant-level risk assessments |
+| 09 | Explainability | Interpret model behaviour using feature importance, permutation importance, and SHAP |
+| 10 | Analytics & Reporting | Generate metrics, visualizations, prediction files, and reusable analytical artifacts |
+| 11 | Application Layer | Surface the analytical workflow through the interactive Streamlit dashboard |
+| 12 | Decision Support | Present model outputs and explanations through an interactive user-facing interface |
 
-The workflow follows the same end-to-end structure used in a professional analytics pipeline: **data → preparation → analysis → modelling → evaluation → prediction → explainability → reporting → application**.
+The workflow follows a structured **data-to-decision architecture**: **Data Foundation → Preparation → Exploration → Feature Engineering → Model Development → Evaluation → Selection → Risk Estimation → Explainability → Reporting → Application → Decision Support**.
 
 ---
 
