@@ -2,8 +2,6 @@
 
 An end-to-end **Explainable Machine Learning** application for synthetic credit-risk analytics, simulated loan-default prediction, model evaluation, feature-importance analysis, and interactive financial decision support.
 
-> **Responsible Use Notice:** This project uses synthetic applicant and loan data with simulated default labels. Probabilities, metrics, and risk estimates are for analytical demonstration only and are not validated for real-world lending, underwriting, or financial decisions.
-
 ---
 
 ## Overview
