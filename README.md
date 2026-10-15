@@ -97,25 +97,6 @@ flowchart TD
     linkStyle default stroke:#6b7280,stroke-width:1.8px;
 ```
 
-### Workflow Stages
-
-| Phase | Stage | Description |
-|---|---|---|
-| 01 | Data Foundation | Ingest, inspect, validate, and assess the quality of the credit-risk dataset |
-| 02 | Data Preparation | Clean the data and prepare numerical and categorical features for modelling |
-| 03 | Exploratory Analysis | Identify distributions, patterns, relationships, and simulated default trends |
-| 04 | Feature Preparation | Transform the prepared variables into model-ready inputs |
-| 05 | Model Development | Train Logistic Regression, Random Forest, XGBoost, and CatBoost classifiers |
-| 06 | Model Evaluation | Compare predictive performance using Accuracy, Precision, Recall, F1-Score, and ROC-AUC |
-| 07 | Model Selection | Select the appropriate model based on the evaluation objectives |
-| 08 | Risk Estimation | Generate simulated default probabilities and applicant-level risk assessments |
-| 09 | Explainability | Interpret model behaviour using feature importance, permutation importance, and SHAP |
-| 10 | Analytics & Reporting | Generate metrics, visualizations, prediction files, and reusable analytical artifacts |
-| 11 | Application Layer | Surface the analytical workflow through the interactive Streamlit dashboard |
-| 12 | Decision Support | Present model outputs and explanations through an interactive user-facing interface |
-
-The workflow follows a structured **data-to-decision architecture**: **Data Foundation → Preparation → Exploration → Feature Engineering → Model Development → Evaluation → Selection → Risk Estimation → Explainability → Reporting → Application → Decision Support**.
-
 ---
 
 ## Dataset
@@ -357,36 +338,15 @@ The project generates reusable analytical artifacts under `outputs/`.
 credit-risk-assessment-and-decision-system/
 │
 ├── data/
-│   └── credit_risk_dataset.csv
-│
 ├── models/
-│   ├── logistic_regression.joblib
-│   ├── random_forest.joblib
-│   ├── xgboost.joblib
-│   ├── catboost.joblib
-│   └── best_model.joblib
-│
 ├── outputs/
-│   ├── model_comparison.csv
-│   ├── best_model_summary.json
-│   ├── predictions_catboost.csv
-│   ├── predictions_logistic_regression.csv
-│   ├── predictions_random_forest.csv
-│   ├── predictions_xgboost.csv
-│   ├── train_set.csv
-│   ├── test_set.csv
-│   ├── data_quality_report.csv
-│   ├── descriptive_statistics.csv
-│   ├── permutation_feature_importance.csv
-│   ├── shap_feature_importance.csv
-│   ├── reports/
-│   └── plots/
-│
+├── .gitignore
+├── .python-version
 ├── app.py
 ├── app_backup.py
+├── credit_risk_dataset.csv
 ├── main.py
 ├── requirements.txt
-├── .gitignore
 └── README.md
 ```
 
