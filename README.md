@@ -4,11 +4,11 @@ An end-to-end **Explainable Machine Learning** application for synthetic credit-
 
 ## Live Demo
 
-**Deployed Streamlit application:**
+**Try the deployed Streamlit application:**
 
 https://credit-risk-assessment-and-decision-system-hfbr2c3bkedmvpamhbi.streamlit.app/
 
-> **Disclaimer:** This project uses synthetic data and is intended for educational and analytical demonstration only. It is not validated for real-world lending decisions.
+> **Note:** This project uses synthetic data and is intended for educational and analytical demonstration only. It is not validated for real-world lending decisions.
 
 ---
 
@@ -23,7 +23,9 @@ The system trains and compares four classification models:
 - **XGBoost** — gradient-boosted decision-tree model
 - **CatBoost** — gradient-boosting model for tabular data
 
-Models are evaluated on a held-out test set, followed by feature-importance analysis and SHAP-based explainability.
+Model performance is evaluated on a held-out test set, followed by feature-importance analysis and SHAP-based explainability.
+
+---
 
 ## Key Objectives
 
@@ -38,46 +40,74 @@ Models are evaluated on a held-out test set, followed by feature-importance anal
 - Produce reusable analytical reports and model artifacts
 - Provide an interactive Streamlit credit-risk dashboard
 
+---
+
 ## Project Workflow
 
 ```text
-Credit Risk Dataset
-        ↓
-Data Loading & Validation
-        ↓
-Data Preprocessing
-        ↓
-Exploratory Data Analysis
-        ↓
-Feature Preparation
-        ↓
-Train / Test Split
-        ↓
-┌─────────────────────────────────────────────┐
-│              MODEL TRAINING                 │
-│                                             │
-│  Logistic Regression  →  Baseline Model     │
-│  Random Forest        →  Ensemble Model     │
-│  XGBoost              →  Boosting Model     │
-│  CatBoost             →  Boosting Model     │
-└─────────────────────────────────────────────┘
-        ↓
-Model Comparison
-        ↓
-Best Model Selection
-        ↓
-Default Probability Prediction
-        ↓
-Model Evaluation
-        ↓
-Feature Importance Analysis
-        ↓
-SHAP Explainability
-        ↓
-Reports & Visualizations
-        ↓
-Streamlit Credit Risk Analytics Dashboard
+┌─────────────────────────────────────────────────────────────┐
+│                 CREDIT RISK ANALYTICS PIPELINE              │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+                 Synthetic Credit-Risk Dataset
+                              │
+                              ▼
+                 Data Loading & Validation
+                              │
+                              ▼
+                  Data Preprocessing & Cleaning
+                              │
+                              ▼
+             Exploratory Data Analysis & Visualization
+                              │
+                              ▼
+                    Feature Preparation
+                              │
+                              ▼
+                     Train / Test Split
+                              │
+                              ▼
+                    ┌─────────────────────┐
+                    │    MODEL TRAINING   │
+                    ├─────────────────────┤
+                    │ Logistic Regression │
+                    │ Random Forest       │
+                    │ XGBoost             │
+                    │ CatBoost            │
+                    └─────────────────────┘
+                              │
+                              ▼
+                   Model Performance Comparison
+                              │
+                              ▼
+                      Best Model Selection
+                              │
+                              ▼
+               Default Probability Prediction
+                              │
+                              ▼
+             ┌─────────────────────────────────┐
+             │       MODEL INTERPRETATION      │
+             ├─────────────────────────────────┤
+             │ Feature Importance               │
+             │ Permutation Importance           │
+             │ SHAP Explainability             │
+             └─────────────────────────────────┘
+                              │
+                              ▼
+                  Reports & Visualizations
+                              │
+                              ▼
+               Streamlit Credit Risk Dashboard
+                              │
+                              ▼
+                 Interactive Decision Support
 ```
+
+The workflow is designed as a complete analytical pipeline, connecting data preparation and model development with evaluation, explainability, and an interactive application layer.
+
+---
 
 ## Dataset
 
@@ -96,9 +126,11 @@ loan_default
 
 The dataset contains applicant and loan-related attributes including age, annual income, employment information, loan amount, loan term, interest rate, credit history, existing loans, missed payments, and loan purpose.
 
+---
+
 ## Exploratory Data Analysis
 
-The EDA stage examines distributions and relationships within the synthetic credit-risk dataset.
+The EDA stage examines the distribution and relationships within the synthetic credit-risk dataset.
 
 ### Target Distribution
 
@@ -129,6 +161,8 @@ Shows simulated default rates across different loan-purpose categories.
 ![Interest Rate by Outcome](outputs/plots/05_interest_rate_by_outcome.png)
 
 Compares interest-rate distributions across simulated default and non-default observations.
+
+---
 
 ## Machine Learning Models
 
@@ -162,6 +196,8 @@ models/
 ├── catboost.joblib
 └── best_model.joblib
 ```
+
+---
 
 ## Model Evaluation
 
@@ -200,6 +236,8 @@ Compares the ROC behaviour of the trained classification models.
 
 Compares precision and recall behaviour across classification thresholds.
 
+---
+
 ## Explainable AI & Feature Importance
 
 Model performance alone is not sufficient for an analytical credit-risk workflow. The project therefore includes feature-importance and SHAP-based analysis.
@@ -218,6 +256,8 @@ Provides an explainable view of how features contribute to model predictions.
 
 > SHAP and feature-importance results describe model behaviour on the synthetic dataset; they do not establish causal relationships.
 
+---
+
 ## Streamlit Application
 
 The project includes an interactive **Streamlit Credit Risk Analytics** dashboard for exploring the dataset, estimating hypothetical applicant risk, reviewing model performance, visualizing analytical results, and downloading generated outputs.
@@ -225,23 +265,17 @@ The project includes an interactive **Streamlit Credit Risk Analytics** dashboar
 ### Application Modules
 
 ```text
-┌─────────────────────────────────────────────┐
-│       CREDIT RISK ANALYTICS APPLICATION     │
-├─────────────────────────────────────────────┤
-│                                             │
-│  Portfolio Overview                         │
-│          ↓                                  │
-│  Explore Data                               │
-│          ↓                                  │
-│  Applicant Estimate                         │
-│          ↓                                  │
-│  Data Visualizations                        │
-│          ↓                                  │
-│  Model Performance                          │
-│          ↓                                  │
-│  Reports & Downloads                        │
-│                                             │
-└─────────────────────────────────────────────┘
+Portfolio Overview
+       │
+       ├── Explore Data
+       │
+       ├── Applicant Estimate
+       │
+       ├── Data Visualizations
+       │
+       ├── Model Performance
+       │
+       └── Reports & Downloads
 ```
 
 ### Portfolio Overview
@@ -268,6 +302,8 @@ Provides access to model comparison metrics, confusion-matrix analysis, ROC curv
 
 Provides access to generated CSV reports, prediction files, and visualization outputs.
 
+---
+
 ## Project Outputs
 
 The project generates reusable analytical artifacts under `outputs/`.
@@ -286,6 +322,8 @@ The project generates reusable analytical artifacts under `outputs/`.
 | `plots/` | Generated analytical visualizations |
 | `reports/` | Generated project reports |
 
+---
+
 ## Technology Stack
 
 | Area | Technology |
@@ -301,6 +339,8 @@ The project generates reusable analytical artifacts under `outputs/`.
 | Web Application | Streamlit |
 | Development | VS Code |
 | Version Control | Git & GitHub |
+
+---
 
 ## Repository Structure
 
@@ -341,6 +381,8 @@ credit-risk-assessment-and-decision-system/
 └── README.md
 ```
 
+---
+
 ## Installation & Usage
 
 ### Clone the Repository
@@ -367,6 +409,8 @@ python main.py
 ```bash
 streamlit run app.py
 ```
+
+---
 
 ## Responsible Use
 
