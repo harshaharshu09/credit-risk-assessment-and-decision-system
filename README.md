@@ -8,15 +8,22 @@ An end-to-end **Explainable Machine Learning** application for synthetic credit-
 
 👉 https://credit-risk-assessment-and-decision-system-hfbr2c3bkedmvpamhbi.streamlit.app/
 
-> Educational demo using synthetic data only. Not validated for real lending decisions.
+> **Note:** This project uses synthetic data and is intended for educational and analytical demonstration only. It is not validated for real-world lending decisions.
 
 ---
 
 ## Overview
 
-This project implements a complete credit-risk analytics workflow — from data preparation and exploratory analysis to multi-model training, evaluation, explainability, and an interactive Streamlit application.
+This project implements an end-to-end credit-risk analytics workflow covering data preparation, exploratory data analysis, machine-learning model training, evaluation, explainability, and interactive decision support through a Streamlit application.
 
-The system is built around four classification models: **Logistic Regression, Random Forest, XGBoost, and CatBoost**. Their performance is compared on a held-out test set before generating predictions and explainable model insights.
+The system trains and compares four classification models:
+
+- **Logistic Regression** — transparent linear baseline
+- **Random Forest** — ensemble model for nonlinear relationships
+- **XGBoost** — gradient-boosted decision-tree model
+- **CatBoost** — gradient-boosting model for tabular data
+
+Model performance is evaluated on a held-out test set, followed by feature-importance analysis and SHAP-based explainability.
 
 ---
 
@@ -25,13 +32,13 @@ The system is built around four classification models: **Logistic Regression, Ra
 - Analyze synthetic borrower and loan characteristics
 - Perform exploratory data analysis and visualization
 - Prepare features for machine-learning classification
-- Train and compare four classification models
+- Train and compare multiple classification models
 - Generate simulated loan-default probabilities
-- Evaluate model performance using multiple metrics
+- Evaluate models using multiple performance metrics
 - Analyze feature importance and model behaviour
 - Generate SHAP-based explanations
-- Produce reusable CSV, PNG, and model artifacts
-- Provide an interactive Streamlit credit-risk analytics dashboard
+- Produce reusable analytical reports and model artifacts
+- Provide an interactive Streamlit credit-risk dashboard
 
 ---
 
@@ -73,10 +80,7 @@ SHAP Explainability
         ↓
 Reports & Visualizations
         ↓
-╔═════════════════════════════════════════════╗
-║       CREDIT RISK ANALYTICS DASHBOARD      ║
-║              STREAMLIT APPLICATION         ║
-╚═════════════════════════════════════════════╝
+Streamlit Credit Risk Analytics Dashboard
 ```
 
 ---
@@ -85,7 +89,7 @@ Reports & Visualizations
 
 The project uses a synthetic credit-risk dataset containing **5,000 applicant records and 13 columns**.
 
-The target variable is:
+### Target Variable
 
 ```text
 loan_default
@@ -96,9 +100,7 @@ loan_default
 1 → Simulated default
 ```
 
-The dataset contains applicant and loan-related attributes such as age, annual income, employment information, loan amount, loan term, interest rate, credit history, existing loans, missed payments, and loan purpose.
-
-> The dataset is synthetic and intended for analytical demonstration only.
+The dataset contains applicant and loan-related attributes including age, annual income, employment information, loan amount, loan term, interest rate, credit history, existing loans, missed payments, and loan purpose.
 
 ---
 
@@ -186,7 +188,7 @@ The trained models are evaluated on the held-out test set using accuracy, precis
 | Random Forest | 0.722 | 0.391 | 0.384 | 0.388 | 0.673 |
 | XGBoost | **0.769** | **0.481** | 0.109 | 0.178 | 0.665 |
 
-These metrics represent the current synthetic-data test split. Different evaluation objectives can lead to different preferred models.
+These metrics represent the current synthetic-data test split. The preferred model can vary depending on the evaluation objective.
 
 ### 6. Model Metrics Comparison
 
@@ -232,13 +234,9 @@ Provides an explainable view of how features contribute to model predictions.
 
 ---
 
-## Credit Risk Analytics — Streamlit Application
+## Streamlit Application
 
-The project is delivered through an interactive **Streamlit Credit Risk Analytics** application, providing a single interface for exploring the dataset, estimating applicant risk, reviewing model performance, visualizing analytical results, and downloading generated outputs.
-
-### 🌐 Live Application
-
-[**Open the Credit Risk Analytics App →**](https://credit-risk-assessment-and-decision-system-hfbr2c3bkedmvpamhbi.streamlit.app/)
+The project includes an interactive **Streamlit Credit Risk Analytics** dashboard for exploring the dataset, estimating hypothetical applicant risk, reviewing model performance, visualizing analytical results, and downloading generated outputs.
 
 ### Application Modules
 
@@ -285,15 +283,6 @@ Provides access to model comparison metrics, confusion-matrix analysis, ROC curv
 ### Reports & Downloads
 
 Provides access to generated CSV reports, prediction files, and visualization outputs.
-
-### Run the Application
-
-```bash
-python -m pip install -r requirements.txt
-streamlit run app.py
-```
-
-The application opens through the local Streamlit server. A local `localhost` address is not a public deployment URL.
 
 ---
 
@@ -378,7 +367,7 @@ credit-risk-assessment-and-decision-system/
 
 ## Installation & Usage
 
-### Clone Repository
+### Clone the Repository
 
 ```bash
 git clone https://github.com/harshaharshu09/credit-risk-assessment-and-decision-system.git
@@ -397,7 +386,7 @@ python -m pip install -r requirements.txt
 python main.py
 ```
 
-### Launch the Credit Risk Analytics Application
+### Launch the Streamlit Application
 
 ```bash
 streamlit run app.py
