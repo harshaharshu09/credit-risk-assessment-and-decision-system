@@ -52,27 +52,22 @@ flowchart TD
     D --> E[Feature Engineering & Preparation]
     E --> F[Train / Test Split]
     F --> G[Model Development & Comparison]
-    G --> H[Model Evaluation]
-    H --> I[Model Selection]
+    G --> G1[Logistic Regression]
+    G1 --> G2[Random Forest]
+    G2 --> G3[XGBoost]
+    G3 --> G4[CatBoost]
+    G4 --> H[Model Evaluation & Comparison]
+    H --> H1[Accuracy • Precision • Recall • F1-Score • ROC-AUC]
+    H1 --> I[Model Selection]
     I --> J[Default Probability Prediction]
     J --> K[Credit Risk Assessment]
     K --> L[Explainability & Feature Analysis]
-    L --> M[Analytics & Reporting]
+    L --> L1[Feature Importance]
+    L1 --> L2[Permutation Importance]
+    L2 --> L3[SHAP Analysis]
+    L3 --> M[Analytics & Reporting]
     M --> N[Streamlit Analytics Dashboard]
     N --> O([Interactive Decision Support])
-
-    G -.-> G1[Logistic Regression]
-    G -.-> G2[Random Forest]
-    G -.-> G3[XGBoost]
-    G -.-> G4[CatBoost]
-
-    H -.-> H1[Accuracy]
-    H -.-> H2[Precision / Recall]
-    H -.-> H3[F1-Score / ROC-AUC]
-
-    L -.-> L1[Feature Importance]
-    L -.-> L2[Permutation Importance]
-    L -.-> L3[SHAP Analysis]
 
     classDef source fill:#f5f5f5,stroke:#333,stroke-width:1.5px,color:#1f2937,font-weight:bold;
     classDef process fill:#eef4ff,stroke:#4a6fa5,stroke-width:1.5px,color:#111827;
@@ -81,9 +76,9 @@ flowchart TD
     classDef application fill:#edf6ef,stroke:#4f7942,stroke-width:1.5px,color:#111827;
 
     class A,O source;
-    class B,C,D,E,F,H,I,J,K,M process;
+    class B,C,D,E,F,H,H1,I,J,K,M process;
     class G,G1,G2,G3,G4 model;
-    class L,L1,L2,L3,H1,H2,H3 analysis;
+    class L,L1,L2,L3 analysis;
     class N application;
 
     linkStyle default stroke:#6b7280,stroke-width:1.5px;
