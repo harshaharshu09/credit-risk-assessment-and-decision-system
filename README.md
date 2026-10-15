@@ -80,11 +80,11 @@ flowchart LR
     U --> V[Streamlit Analytics Dashboard]
     V --> W([Interactive Decision Support])
 
-    classDef source fill:#f5f5f5,stroke:#333,stroke-width:1px;
-    classDef process fill:#eef4ff,stroke:#4a6fa5,stroke-width:1px;
-    classDef model fill:#f7f1e8,stroke:#9a6a1f,stroke-width:1px;
-    classDef analysis fill:#f1edf8,stroke:#76528a,stroke-width:1px;
-    classDef application fill:#edf6ef,stroke:#4f7942,stroke-width:1px;
+    classDef source fill:#f5f5f5,stroke:#333,stroke-width:1px,color:#1f2937;
+    classDef process fill:#eef4ff,stroke:#4a6fa5,stroke-width:1px,color:#1f2937;
+    classDef model fill:#f7f1e8,stroke:#9a6a1f,stroke-width:1px,color:#1f2937;
+    classDef analysis fill:#f1edf8,stroke:#76528a,stroke-width:1px,color:#1f2937;
+    classDef application fill:#edf6ef,stroke:#4f7942,stroke-width:1px,color:#1f2937;
 
     class A,W source;
     class B,C,D,E,F,L,M,N,O,P,U process;
