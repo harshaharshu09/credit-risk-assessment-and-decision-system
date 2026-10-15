@@ -1,5 +1,14 @@
 # Credit Risk Assessment & Decision Support System
 
+<p align="center">
+  <strong>Explainable Machine Learning • Credit Risk Analytics • Interactive Decision Support</strong>
+</p>
+
+<p align="center">
+  <a href="https://credit-risk-assessment-and-decision-system-hfbr2c3bkedmvpamhbi.streamlit.app/">Live Demo</a> •
+  <a href="https://github.com/harshaharshu09/credit-risk-assessment-and-decision-system">GitHub Repository</a>
+</p>
+
 An end-to-end **Explainable Machine Learning** application for synthetic credit-risk analytics, simulated loan-default prediction, model evaluation, feature-importance analysis, and interactive financial decision support.
 
 ## Live Demo
@@ -14,7 +23,7 @@ https://credit-risk-assessment-and-decision-system-hfbr2c3bkedmvpamhbi.streamlit
 
 ## Overview
 
-This project implements an end-to-end credit-risk analytics workflow covering data preparation, exploratory data analysis, machine-learning model training, evaluation, explainability, and interactive decision support through a Streamlit application.
+This project implements a complete credit-risk analytics pipeline covering data preparation, exploratory analysis, machine-learning model development, evaluation, explainability, reporting, and an interactive Streamlit application.
 
 The system trains and compares four classification models:
 
@@ -24,8 +33,6 @@ The system trains and compares four classification models:
 - **CatBoost** — gradient-boosting model for tabular data
 
 Model performance is evaluated on a held-out test set, followed by feature-importance analysis and SHAP-based explainability.
-
----
 
 ## Key Objectives
 
@@ -39,8 +46,6 @@ Model performance is evaluated on a held-out test set, followed by feature-impor
 - Generate SHAP-based explanations
 - Produce reusable analytical reports and model artifacts
 - Provide an interactive Streamlit credit-risk dashboard
-
----
 
 ## Project Workflow
 
@@ -69,17 +74,14 @@ flowchart TD
     O([Interactive Decision Support])
 
     A --> B --> C --> D --> E --> F --> G
-
     G --> LR
     G --> RF
     G --> XGB
     G --> CB
-
     LR --> H
     RF --> H
     XGB --> H
     CB --> H
-
     H --> I --> J --> K --> L --> M --> N --> O
 
     classDef source fill:#f5f5f5,stroke:#333,stroke-width:1.8px,color:#111827,font-weight:bold;
@@ -258,13 +260,9 @@ The project includes an interactive **Streamlit Credit Risk Analytics** dashboar
 Portfolio Overview
        │
        ├── Explore Data
-       │
        ├── Applicant Estimate
-       │
        ├── Data Visualizations
-       │
        ├── Model Performance
-       │
        └── Reports & Downloads
 ```
 
@@ -338,13 +336,19 @@ The project generates reusable analytical artifacts under `outputs/`.
 credit-risk-assessment-and-decision-system/
 │
 ├── data/
+│   └── credit_risk_dataset.csv
 ├── models/
+│   ├── logistic_regression.joblib
+│   ├── random_forest.joblib
+│   ├── xgboost.joblib
+│   ├── catboost.joblib
+│   └── best_model.joblib
 ├── outputs/
+│   ├── plots/
+│   └── reports/
 ├── .gitignore
 ├── .python-version
 ├── app.py
-├── app_backup.py
-├── credit_risk_dataset.csv
 ├── main.py
 ├── requirements.txt
 └── README.md
