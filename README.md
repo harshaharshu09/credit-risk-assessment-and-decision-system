@@ -2,6 +2,14 @@
 
 An end-to-end **Explainable Machine Learning** application for synthetic credit-risk analytics, simulated loan-default prediction, model evaluation, feature-importance analysis, and interactive financial decision support.
 
+## 🚀 Live Demo
+
+**Try the deployed Streamlit application:**
+
+👉 https://credit-risk-assessment-and-decision-system-hfbr2c3bkedmvpamhbi.streamlit.app/
+
+> Educational demo using synthetic data only. Not validated for real lending decisions.
+
 ---
 
 ## Overview
@@ -228,6 +236,10 @@ Provides an explainable view of how features contribute to model predictions.
 
 The project is delivered through an interactive **Streamlit Credit Risk Analytics** application, providing a single interface for exploring the dataset, estimating applicant risk, reviewing model performance, visualizing analytical results, and downloading generated outputs.
 
+### 🌐 Live Application
+
+[**Open the Credit Risk Analytics App →**](https://credit-risk-assessment-and-decision-system-hfbr2c3bkedmvpamhbi.streamlit.app/)
+
 ### Application Modules
 
 ```text
@@ -353,17 +365,6 @@ credit-risk-assessment-and-decision-system/
 │   ├── shap_feature_importance.csv
 │   ├── reports/
 │   └── plots/
-│       ├── 01_target_distribution.png
-│       ├── 02_annual_income_distribution.png
-│       ├── 03_loan_amount_by_outcome.png
-│       ├── 04_default_rate_by_purpose.png
-│       ├── 05_interest_rate_by_outcome.png
-│       ├── 06_model_metrics_comparison.png
-│       ├── 07_best_model_confusion_matrix.png
-│       ├── 08_roc_curves.png
-│       ├── 09_precision_recall_curves.png
-│       ├── 10_permutation_feature_importance.png
-│       └── 11_shap_summary.png
 │
 ├── app.py
 ├── app_backup.py
