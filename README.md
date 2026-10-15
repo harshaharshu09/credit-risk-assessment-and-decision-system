@@ -46,42 +46,55 @@ Model performance is evaluated on a held-out test set, followed by feature-impor
 
 ```mermaid
 flowchart TD
-    A([Credit Risk Dataset]) --> B[Data Ingestion & Validation]
-    B --> C[Data Cleaning & Preprocessing]
-    C --> D[Exploratory Data Analysis]
-    D --> E[Feature Engineering & Preparation]
-    E --> F[Train / Test Split]
-    F --> G[Model Development & Comparison]
-    G --> G1[Logistic Regression]
-    G1 --> G2[Random Forest]
-    G2 --> G3[XGBoost]
-    G3 --> G4[CatBoost]
-    G4 --> H[Model Evaluation & Comparison]
-    H --> H1[Accuracy • Precision • Recall • F1-Score • ROC-AUC]
-    H1 --> I[Model Selection]
-    I --> J[Default Probability Prediction]
-    J --> K[Credit Risk Assessment]
-    K --> L[Explainability & Feature Analysis]
-    L --> L1[Feature Importance]
-    L1 --> L2[Permutation Importance]
-    L2 --> L3[SHAP Analysis]
-    L3 --> M[Analytics & Reporting]
-    M --> N[Streamlit Analytics Dashboard]
-    N --> O([Interactive Decision Support])
+    A([Credit Risk Dataset])
+    B[Data Ingestion & Validation]
+    C[Data Cleaning & Preprocessing]
+    D[Exploratory Data Analysis]
+    E[Feature Engineering & Preparation]
+    F[Train / Test Split]
+    G[Model Development]
 
-    classDef source fill:#f5f5f5,stroke:#333,stroke-width:1.5px,color:#1f2937,font-weight:bold;
-    classDef process fill:#eef4ff,stroke:#4a6fa5,stroke-width:1.5px,color:#111827;
-    classDef model fill:#f7f1e8,stroke:#9a6a1f,stroke-width:1.5px,color:#111827;
-    classDef analysis fill:#f1edf8,stroke:#76528a,stroke-width:1.5px,color:#111827;
-    classDef application fill:#edf6ef,stroke:#4f7942,stroke-width:1.5px,color:#111827;
+    LR[Logistic Regression]
+    RF[Random Forest]
+    XGB[XGBoost]
+    CB[CatBoost]
+
+    H[Model Evaluation & Comparison]
+    I[Model Selection]
+    J[Default Probability Prediction]
+    K[Credit Risk Assessment]
+    L[Explainability & Feature Analysis]
+    M[Analytics & Reporting]
+    N[Streamlit Analytics Dashboard]
+    O([Interactive Decision Support])
+
+    A --> B --> C --> D --> E --> F --> G
+
+    G --> LR
+    G --> RF
+    G --> XGB
+    G --> CB
+
+    LR --> H
+    RF --> H
+    XGB --> H
+    CB --> H
+
+    H --> I --> J --> K --> L --> M --> N --> O
+
+    classDef source fill:#f5f5f5,stroke:#333,stroke-width:1.8px,color:#111827,font-weight:bold;
+    classDef process fill:#eef4ff,stroke:#4a6fa5,stroke-width:1.8px,color:#111827,font-weight:bold;
+    classDef model fill:#f7f1e8,stroke:#9a6a1f,stroke-width:1.8px,color:#111827,font-weight:bold;
+    classDef analysis fill:#f1edf8,stroke:#76528a,stroke-width:1.8px,color:#111827,font-weight:bold;
+    classDef application fill:#edf6ef,stroke:#4f7942,stroke-width:1.8px,color:#111827,font-weight:bold;
 
     class A,O source;
-    class B,C,D,E,F,H,H1,I,J,K,M process;
-    class G,G1,G2,G3,G4 model;
-    class L,L1,L2,L3 analysis;
+    class B,C,D,E,F,G,H,I,J,K process;
+    class LR,RF,XGB,CB model;
+    class L,M analysis;
     class N application;
 
-    linkStyle default stroke:#6b7280,stroke-width:1.5px;
+    linkStyle default stroke:#6b7280,stroke-width:1.8px;
 ```
 
 ### Workflow Stages
