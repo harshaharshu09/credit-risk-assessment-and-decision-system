@@ -45,40 +45,37 @@ Model performance is evaluated on a held-out test set, followed by feature-impor
 ## Project Workflow
 
 ```mermaid
-flowchart LR
-    A([Credit Risk Dataset]) --> B[Data Ingestion<br/>Inspection & Validation]
-    B --> C[Data Quality<br/>Cleaning & Preprocessing]
-    C --> D[Exploratory Data Analysis<br/>Statistical & Visual Analysis]
-    D --> E[Feature Engineering<br/>Encoding & Preparation]
-    E --> F[Train / Test Split]
+flowchart TD
+    A([Credit Risk Dataset])
+    B[Data Ingestion<br/>Inspection & Validation]
+    C[Data Quality<br/>Cleaning & Preprocessing]
+    D[Exploratory Data Analysis<br/>Statistical & Visual Analysis]
+    E[Feature Engineering<br/>Encoding & Preparation]
+    F[Train / Test Split]
+    G[Model Development & Comparison<br/>Logistic Regression • Random Forest<br/>XGBoost • CatBoost]
+    H[Model Evaluation<br/>Accuracy • Precision • Recall<br/>F1-Score • ROC-AUC]
+    I[Model Selection]
+    J[Default Probability<br/>Prediction]
+    K[Credit Risk Assessment]
+    L[Explainability Layer<br/>Feature Importance • Permutation Importance • SHAP]
+    M[Analytics & Reporting<br/>Metrics • Visualizations • Model Artifacts]
+    N[Streamlit Analytics Dashboard]
+    O([Interactive Decision Support])
 
-    F --> G{{Model Development}}
-    G --> H[Logistic Regression]
-    G --> I[Random Forest]
-    G --> J[XGBoost]
-    G --> K[CatBoost]
-
-    H --> L[Model Evaluation]
-    I --> L
-    J --> L
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    H --> I
+    I --> J
+    J --> K
     K --> L
-
-    L --> M[Performance Comparison<br/>Accuracy • Precision • Recall<br/>F1 • ROC-AUC]
-    M --> N[Model Selection]
-    N --> O[Default Probability<br/>Prediction]
-    O --> P[Credit Risk Assessment]
-
-    P --> Q{{Explainability Layer}}
-    Q --> R[Feature Importance]
-    Q --> S[Permutation Importance]
-    Q --> T[SHAP Analysis]
-
-    R --> U[Reports & Visualizations]
-    S --> U
-    T --> U
-
-    U --> V[Streamlit Analytics Dashboard]
-    V --> W([Interactive Decision Support])
+    L --> M
+    M --> N
+    N --> O
 
     classDef source fill:#f5f5f5,stroke:#333,stroke-width:1px,color:#1f2937;
     classDef process fill:#eef4ff,stroke:#4a6fa5,stroke-width:1px,color:#1f2937;
@@ -86,11 +83,11 @@ flowchart LR
     classDef analysis fill:#f1edf8,stroke:#76528a,stroke-width:1px,color:#1f2937;
     classDef application fill:#edf6ef,stroke:#4f7942,stroke-width:1px,color:#1f2937;
 
-    class A,W source;
-    class B,C,D,E,F,L,M,N,O,P,U process;
-    class G,H,I,J,K model;
-    class Q,R,S,T analysis;
-    class V application;
+    class A,O source;
+    class B,C,D,E,F,H,I,J,K,M process;
+    class G model;
+    class L analysis;
+    class N application;
 ```
 
 ### Workflow Stages
