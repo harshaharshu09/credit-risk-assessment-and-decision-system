@@ -9,6 +9,7 @@ MODEL = ROOT / "models" / "best_model.joblib"
 METRICS = ROOT / "outputs" / "model_comparison.csv"
 OUTPUTS = ROOT / "outputs"
 PLOTS = OUTPUTS / "plots"
+README = ROOT / "README.md"
 
 st.set_page_config(page_title="Credit Risk Analytics", page_icon="📊", layout="wide")
 
@@ -75,8 +76,8 @@ def show_csv_downloads():
             )
 
 
-overview, explore, predict, visuals, performance, reports = st.tabs([
-    "Portfolio Overview", "Explore Data", "Applicant Estimate", "Data Visualizations", "Model Performance", "Reports & Downloads"
+overview, explore, predict, visuals, performance, reports, documentation = st.tabs([
+    "Portfolio Overview", "Explore Data", "Applicant Estimate", "Data Visualizations", "Model Performance", "Reports & Downloads", "Project Documentation"
 ])
 
 with overview:
@@ -218,6 +219,15 @@ with reports:
             st.info("No plot images are available to download.")
     else:
         st.info("The plots folder does not exist.")
+
+with documentation:
+    st.subheader("Project Documentation")
+    st.caption("This section renders the repository README directly, so the documentation stays synchronized with GitHub.")
+    if README.exists():
+        readme_content = README.read_text(encoding="utf-8")
+        st.markdown(readme_content)
+    else:
+        st.error("README.md was not found in the project repository.")
 
 st.divider()
 st.caption("Credit Risk Analytics | Synthetic educational project | Results are illustrative and not validated for real lending.")
