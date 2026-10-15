@@ -2,13 +2,13 @@
 
 An end-to-end **Explainable Machine Learning** application for synthetic credit-risk analytics, simulated loan-default prediction, model evaluation, feature-importance analysis, and interactive financial decision support.
 
-## 🚀 Live Demo
+## Live Demo
 
-**Try the deployed Streamlit application:**
+**Deployed Streamlit application:**
 
-👉 https://credit-risk-assessment-and-decision-system-hfbr2c3bkedmvpamhbi.streamlit.app/
+https://credit-risk-assessment-and-decision-system-hfbr2c3bkedmvpamhbi.streamlit.app/
 
-> **Note:** This project uses synthetic data and is intended for educational and analytical demonstration only. It is not validated for real-world lending decisions.
+> **Disclaimer:** This project uses synthetic data and is intended for educational and analytical demonstration only. It is not validated for real-world lending decisions.
 
 ---
 
@@ -23,9 +23,7 @@ The system trains and compares four classification models:
 - **XGBoost** — gradient-boosted decision-tree model
 - **CatBoost** — gradient-boosting model for tabular data
 
-Model performance is evaluated on a held-out test set, followed by feature-importance analysis and SHAP-based explainability.
-
----
+Models are evaluated on a held-out test set, followed by feature-importance analysis and SHAP-based explainability.
 
 ## Key Objectives
 
@@ -39,8 +37,6 @@ Model performance is evaluated on a held-out test set, followed by feature-impor
 - Generate SHAP-based explanations
 - Produce reusable analytical reports and model artifacts
 - Provide an interactive Streamlit credit-risk dashboard
-
----
 
 ## Project Workflow
 
@@ -83,8 +79,6 @@ Reports & Visualizations
 Streamlit Credit Risk Analytics Dashboard
 ```
 
----
-
 ## Dataset
 
 The project uses a synthetic credit-risk dataset containing **5,000 applicant records and 13 columns**.
@@ -102,43 +96,39 @@ loan_default
 
 The dataset contains applicant and loan-related attributes including age, annual income, employment information, loan amount, loan term, interest rate, credit history, existing loans, missed payments, and loan purpose.
 
----
-
 ## Exploratory Data Analysis
 
-The EDA stage examines the distribution and relationships within the synthetic credit-risk dataset.
+The EDA stage examines distributions and relationships within the synthetic credit-risk dataset.
 
-### 1. Target Distribution
+### Target Distribution
 
 ![Target Distribution](outputs/plots/01_target_distribution.png)
 
 Shows the distribution of simulated default and non-default observations.
 
-### 2. Annual Income Distribution
+### Annual Income Distribution
 
 ![Annual Income Distribution](outputs/plots/02_annual_income_distribution.png)
 
 Shows the distribution of annual income across synthetic applicants.
 
-### 3. Loan Amount by Outcome
+### Loan Amount by Outcome
 
 ![Loan Amount by Outcome](outputs/plots/03_loan_amount_by_outcome.png)
 
 Compares loan-amount distributions across the simulated outcome classes.
 
-### 4. Default Rate by Loan Purpose
+### Default Rate by Loan Purpose
 
 ![Default Rate by Loan Purpose](outputs/plots/04_default_rate_by_purpose.png)
 
 Shows simulated default rates across different loan-purpose categories.
 
-### 5. Interest Rate by Outcome
+### Interest Rate by Outcome
 
 ![Interest Rate by Outcome](outputs/plots/05_interest_rate_by_outcome.png)
 
 Compares interest-rate distributions across simulated default and non-default observations.
-
----
 
 ## Machine Learning Models
 
@@ -173,8 +163,6 @@ models/
 └── best_model.joblib
 ```
 
----
-
 ## Model Evaluation
 
 The trained models are evaluated on the held-out test set using accuracy, precision, recall, F1-score, and ROC-AUC.
@@ -190,49 +178,45 @@ The trained models are evaluated on the held-out test set using accuracy, precis
 
 These metrics represent the current synthetic-data test split. The preferred model can vary depending on the evaluation objective.
 
-### 6. Model Metrics Comparison
+### Model Metrics Comparison
 
 ![Model Metrics Comparison](outputs/plots/06_model_metrics_comparison.png)
 
-### 7. Best Model Confusion Matrix
+### Best Model Confusion Matrix
 
 ![Best Model Confusion Matrix](outputs/plots/07_best_model_confusion_matrix.png)
 
 Shows the classification results of the selected model on the held-out test set.
 
-### 8. ROC Curves
+### ROC Curves
 
 ![ROC Curves](outputs/plots/08_roc_curves.png)
 
 Compares the ROC behaviour of the trained classification models.
 
-### 9. Precision-Recall Curves
+### Precision-Recall Curves
 
 ![Precision Recall Curves](outputs/plots/09_precision_recall_curves.png)
 
 Compares precision and recall behaviour across classification thresholds.
 
----
-
 ## Explainable AI & Feature Importance
 
 Model performance alone is not sufficient for an analytical credit-risk workflow. The project therefore includes feature-importance and SHAP-based analysis.
 
-### 10. Permutation Feature Importance
+### Permutation Feature Importance
 
 ![Permutation Feature Importance](outputs/plots/10_permutation_feature_importance.png)
 
 Measures the change in model performance when individual features are randomly permuted.
 
-### 11. SHAP Summary
+### SHAP Summary
 
 ![SHAP Summary](outputs/plots/11_shap_summary.png)
 
 Provides an explainable view of how features contribute to model predictions.
 
 > SHAP and feature-importance results describe model behaviour on the synthetic dataset; they do not establish causal relationships.
-
----
 
 ## Streamlit Application
 
@@ -284,8 +268,6 @@ Provides access to model comparison metrics, confusion-matrix analysis, ROC curv
 
 Provides access to generated CSV reports, prediction files, and visualization outputs.
 
----
-
 ## Project Outputs
 
 The project generates reusable analytical artifacts under `outputs/`.
@@ -304,8 +286,6 @@ The project generates reusable analytical artifacts under `outputs/`.
 | `plots/` | Generated analytical visualizations |
 | `reports/` | Generated project reports |
 
----
-
 ## Technology Stack
 
 | Area | Technology |
@@ -321,8 +301,6 @@ The project generates reusable analytical artifacts under `outputs/`.
 | Web Application | Streamlit |
 | Development | VS Code |
 | Version Control | Git & GitHub |
-
----
 
 ## Repository Structure
 
@@ -363,8 +341,6 @@ credit-risk-assessment-and-decision-system/
 └── README.md
 ```
 
----
-
 ## Installation & Usage
 
 ### Clone the Repository
@@ -392,16 +368,8 @@ python main.py
 streamlit run app.py
 ```
 
----
-
 ## Responsible Use
 
 This system is a synthetic-data analytics and demonstration project. The generated risk probabilities and model metrics must not be interpreted as validated credit decisions.
 
 A production credit-risk platform would require real-world validation, calibration, fairness testing, data governance, security controls, monitoring, regulatory compliance, and appropriate human oversight.
-
----
-
-## Repository
-
-[Credit Risk Assessment & Decision Support System](https://github.com/harshaharshu09/credit-risk-assessment-and-decision-system)
