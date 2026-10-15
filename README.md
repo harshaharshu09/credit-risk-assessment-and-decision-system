@@ -44,68 +44,72 @@ Model performance is evaluated on a held-out test set, followed by feature-impor
 
 ## Project Workflow
 
-```text
-┌─────────────────────────────────────────────────────────────┐
-│                 CREDIT RISK ANALYTICS PIPELINE              │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-                 Synthetic Credit-Risk Dataset
-                              │
-                              ▼
-                 Data Loading & Validation
-                              │
-                              ▼
-                  Data Preprocessing & Cleaning
-                              │
-                              ▼
-             Exploratory Data Analysis & Visualization
-                              │
-                              ▼
-                    Feature Preparation
-                              │
-                              ▼
-                     Train / Test Split
-                              │
-                              ▼
-                    ┌─────────────────────┐
-                    │    MODEL TRAINING   │
-                    ├─────────────────────┤
-                    │ Logistic Regression │
-                    │ Random Forest       │
-                    │ XGBoost             │
-                    │ CatBoost            │
-                    └─────────────────────┘
-                              │
-                              ▼
-                   Model Performance Comparison
-                              │
-                              ▼
-                      Best Model Selection
-                              │
-                              ▼
-               Default Probability Prediction
-                              │
-                              ▼
-             ┌─────────────────────────────────┐
-             │       MODEL INTERPRETATION      │
-             ├─────────────────────────────────┤
-             │ Feature Importance               │
-             │ Permutation Importance           │
-             │ SHAP Explainability             │
-             └─────────────────────────────────┘
-                              │
-                              ▼
-                  Reports & Visualizations
-                              │
-                              ▼
-               Streamlit Credit Risk Dashboard
-                              │
-                              ▼
-                 Interactive Decision Support
+```mermaid
+flowchart TD
+    A[Credit Risk Dataset] --> B[Data Inspection & Validation]
+    B --> C[Data Cleaning & Preprocessing]
+    C --> D[Exploratory Data Analysis]
+    D --> E[Feature Preparation]
+    E --> F[Train / Test Split]
+
+    F --> G[Model Training]
+
+    G --> H[Logistic Regression]
+    G --> I[Random Forest]
+    G --> J[XGBoost]
+    G --> K[CatBoost]
+
+    H --> L[Model Evaluation]
+    I --> L
+    J --> L
+    K --> L
+
+    L --> M[Performance Comparison]
+    M --> N[Best Model Selection]
+    N --> O[Default Probability Prediction]
+
+    O --> P[Risk Assessment]
+
+    P --> Q[Feature Importance]
+    P --> R[Permutation Importance]
+    P --> S[SHAP Explainability]
+
+    Q --> T[Reports & Visualizations]
+    R --> T
+    S --> T
+
+    T --> U[Streamlit Credit Risk Dashboard]
+    U --> V[Interactive Decision Support]
+
+    classDef data fill:#E8F1FB,stroke:#2F5D8C,stroke-width:1px;
+    classDef process fill:#EEF5EA,stroke:#4F7942,stroke-width:1px;
+    classDef model fill:#F7F0E3,stroke:#9A6A1F,stroke-width:1px;
+    classDef output fill:#F2EAF7,stroke:#76528A,stroke-width:1px;
+
+    class A data;
+    class B,C,D,E,F,G,L,M,N,O,P process;
+    class H,I,J,K model;
+    class Q,R,S,T,U,V output;
 ```
 
-The workflow is designed as a complete analytical pipeline, connecting data preparation and model development with evaluation, explainability, and an interactive application layer.
+### Workflow Stages
+
+| Stage | Process | Outcome |
+|---|---|---|
+| 01 | Data Inspection & Validation | Verified dataset structure and quality |
+| 02 | Cleaning & Preprocessing | Model-ready applicant features |
+| 03 | Exploratory Data Analysis | Distribution and relationship insights |
+| 04 | Feature Preparation | Structured numerical and categorical inputs |
+| 05 | Train / Test Split | Independent evaluation dataset |
+| 06 | Model Training | Four classification models trained |
+| 07 | Model Evaluation | Comparative performance metrics |
+| 08 | Best Model Selection | Selected model for risk estimation |
+| 09 | Risk Prediction | Simulated default probability |
+| 10 | Explainability | Feature importance and SHAP analysis |
+| 11 | Reporting | Charts, metrics and reusable outputs |
+| 12 | Application Layer | Interactive Streamlit decision-support dashboard |
+
+The workflow follows the same end-to-end structure used in a professional analytics pipeline: **data → preparation → analysis → modelling → evaluation → prediction → explainability → reporting → application**.
 
 ---
 
